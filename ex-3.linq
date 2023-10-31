@@ -66,7 +66,7 @@ void Main()
 			}
 		};
 		
-		existingEmployee.Dump("After Edit - Updated Info");
+		existingEmployee.Dump("After Edit");
 		EmployeeRegistrationView afterEdit = AddEditEmployeeRegistration(existingEmployee);
 		
 		Console.WriteLine("-----------------------------------------------------------");
@@ -134,18 +134,18 @@ public EmployeeRegistrationView AddEditEmployeeRegistration(EmployeeRegistration
 
 	if (string.IsNullOrWhiteSpace(employeeRegistration.FirstName))
 	{
-		throw new ArgumentNullException("First name is a mandatory field.");
+		throw new ArgumentNullException("First name is required.");
 	}
 	
 	
 	if (string.IsNullOrWhiteSpace(employeeRegistration.LastName))
 	{
-		throw new ArgumentNullException("Last name is a mandatory field.");
+		throw new ArgumentNullException("Last name is required.");
 	}
 
 	if (string.IsNullOrWhiteSpace(employeeRegistration.HomePhone))
 	{
-		throw new ArgumentNullException("Home Phone is a mandatory field.");
+		throw new ArgumentNullException("Home Phone is required.");
 	}
 
 	if (employeeRegistration.EmployeeSkills == null || employeeRegistration.EmployeeSkills.Count == 0)
@@ -186,7 +186,7 @@ public EmployeeRegistrationView AddEditEmployeeRegistration(EmployeeRegistration
 	#region Check for errors and saving of data //  1 Marks
 	if (errorList.Count() > 0)
 	{
-		throw new AggregateException("Unable to proceed!  Check concerns", errorList);
+		throw new AggregateException("Unable to proceed!", errorList);
 	}
 	#endregion
 	return null;
